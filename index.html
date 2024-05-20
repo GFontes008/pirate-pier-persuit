@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIRATE PIER PURSUIT</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <main>
+
+    <!-- #game-intro is initially shown on the game start screen -->
+    <div id="main-container">
+    <div id="main-menu">
+        <h1>Pirate Pier Persuit</h1>
+        <h2>Survive the pier, escape the sands, and conquer the waves</h2>
+        <br/> 
+      </div>
+        <p>Use the up and down arrow to control the character!</p>
+
+      <div id="main-buttons">
+         <button id="start-button">Begin quest!</button>
+        <button id="mute-button">Shanties</button>
+      </div> 
+
+      <div id="game-container">
+        <div>
+          <h2>Stats</h2>
+          <p>Score: <span id="score">0</span></p>
+          <p>Lives: <span id="lives">3</span></p>
+        </div></div>
+
+
+        <!-- #game-screen is initially hidden using CSS style display: none -->
+        <div id="game-screen"></div>
+      </div>
+
+      <!-- #game-end is initially hidden using CSS style display: none -->
+      <div id="game-end">
+        <img src="./assets/backgroundMain.jpeg" alt="end-image" class="end-img" />
+        <h1>Game Over</h1>
+        <br />
+        <button id="restart-button">Restart</button>
+      </div>
+</main>
+</body>
+</html>
