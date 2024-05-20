@@ -1,55 +1,59 @@
-
-
-
-//This game class is responsable for handling all the game behavior
-//A class é para criar uma serie of Diferent Objects
-
+// Classe que representa o jogo
 class Game {
-    constructor(){
+    constructor() {
         this.startScreen = document.getElementById('main-menu');
         this.gameScreen = document.getElementById('game-screen');
         this.gameEndScreen = document.getElementById('game-end');
         this.player = null;
-        this.height = 600;
-        this.width = 500;
+        this.height = window.innerHeight; // Define a altura para a janela
+        this.width = window.innerWidth; // Define a largura para a janela
         this.obstacles = [];
         this.score = 0;
         this.lives = 3;
         this.isGameOver = false;
         this.gameIntervalId = null;
-        this.gameLoopFrequency = 1000/60;
+        this.gameLoopFrequency = 1000 / 60;
+        this.backgroundX = 0;
     }
-     
-            //com o Constructor definido agora posso, (dentro da clss'Game' começar a fazer 'methods' (function...))
 
-start(){    // sempre que call the START method, set the sizes, esconde o StartScreen e mostra o GameScreen
-        
-    // define os tamanhos
-        this.gameScreen.style.height = '${this.height}px';
-        this.gameScreen.style.width = '${this.width}px';
-    
-        // Esconde o start screen
+    // Função que inicia o jogo
+    start() {
+        // Define os tamanhos do ecrã do jogo
+        this.gameScreen.style.height = `${this.height}px`;
+        this.gameScreen.style.width = `${this.width}px`;
+
+        // Esconde o ecrã inicial
         this.startScreen.style.display = 'none';
-    
-        // momstra o game screen
+
+        // Mostra o ecrã do jogo
         this.gameScreen.style.display = 'block';
-    
-        // Set up game loop interval
+
+        // Instance do jogador
+        this.player = new Player(this.gameScreen);
+
+        // Configura o intervalo do loop do jogo
         this.gameIntervalId = setInterval(() => {
             this.gameLoop();
         }, this.gameLoopFrequency);
     }
 
+    // Loop do jogo
+    gameLoop() {
+        this.update();
+        if (this.isGameOver) {
+            clearInterval(this.gameIntervalId);
+        }
+    }
 
+    // Atualizações do jogo
+    update() {
+        // Atualiza a posição do jogador
+        if (this.player) {
+            this.player.move();
+        }
 
-gameLoop(){
-this.update()
-if(this.isGameOver){
-    clearInterval(this.gameIntervalId)
-}
-}
-
-update(){
-
-}
+        // Move o background
+        this.backgroundX -= 2; // Ajusta a velocidade conforme necessário
+        this.gameScreen.style.backgroundPosition = `${this.backgroundX}px 0`;
+    }
 }

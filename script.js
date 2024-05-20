@@ -1,21 +1,19 @@
-window.onload = function(){
+window.onload = function() {
     const startButton = document.getElementById('start-button');
     const restartButton = document.getElementById('restart-button');
 
-    // Instantiate the Game object
+    //  Game onject INSTANCE
     const ourGame = new Game();
 
-    // Add event listener for the start button
-    startButton.addEventListener('click', function(){
-        document.getElementById('main-menu').style.display = 'none'; // Hide main menu
-        document.getElementById('game-screen').style.display = 'block'; // Show game screen
-        startGame(); // Call startGame function
+    // EventListener para o botão de Start
+    startButton.addEventListener('click', function() {
+        ourGame.start();
     });
 
-
-    // Function to start the game
-    function startGame(){
-        // Call the start method of the Game object
-        ourGame.start();
+    // EventListener para o botão Restart
+    if (restartButton) {
+        restartButton.addEventListener('click', function() {
+            ourGame.start();
+        });
     }
 };

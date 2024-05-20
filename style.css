@@ -1,22 +1,21 @@
 body {
     padding: 0;
     text-align: center;
-  }
-  
-
-  #main-menu {  /* NAO MEXER, MAIN IMAGE DO MENU */
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center;
-    padding: 20px 0; 
-    background-image: url('./assets/start.jpg');
-    background-size: cover; 
-    background-position: center; 
-    width: 100vw; 
-    height: 100vh;
-
 }
+
+#main-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    background-image: url('./assets/start.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 #main-buttons button {
     font-size: 1.2em;
     margin: 10px;
@@ -25,34 +24,43 @@ body {
     margin-top: 20px;
 }
 
-
-  #game-container {
+#game-container {
     display: flex;
     width: 100vw;
     padding: 20px 0px;
     justify-content: center;
-  }
-  
-  #game-screen {
+}
+
+#game-screen {
     display: none;
     background-image: url('./assets/main.jpg');
     background-size: cover;
-    background-repeat: repeat-x; /* Mover o background horizontalmente */
-    animation: movingBackground 10s linear infinite;  /* Ajustar a durançao para a velocidade */
+    background-repeat: repeat-x; /* Permite que o background se mova horizontalmente */
+    animation: movingBackground 10s linear infinite; /* Define a duração da animação para controlar a velocidade */
     width: 100vw;
     height: 100vh;
+    position: relative; /* Garante que childElements possam ser posicionados de forma absoluta */
+}
+
+#player {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
 }
 
 @keyframes movingBackground {
     from { background-position: 0 0; }
-    to { background-position: 2000% 0; }  /*Move o background de 0 -100% horizontalmente */
+    to { background-position: 2000% 0; } /* Move o background de 0% a 2000% horizontalmente */
 }
-  
-  #game-end {
+
+#game-end {
     display: none;
-  }
-  
-  .game-intro p {
+}
+
+.game-intro p {
     font-size: 18px;
     font-family: "Verdana";
-  }
+}
