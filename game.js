@@ -20,18 +20,27 @@ class Game {
         this.gameLoopFrequency = 1000/60;
     }
      
-//com o Constructor definido agora posso, (dentro da clss'Game' começar a fazer 'methods' (function...))
+            //com o Constructor definido agora posso, (dentro da clss'Game' começar a fazer 'methods' (function...))
 
-start(){ // sempre que call the START method, set the sizes, esconde o StartScreen e mostra o GameScreen
-    this.gameScreen.style.height = '${this.height}px'
-    this.gameScreen.style.width = '${this.width}px'
-    this.startScreen.style.display='none'  
-    this.startScreen.style.display='block' 
+start(){    // sempre que call the START method, set the sizes, esconde o StartScreen e mostra o GameScreen
+        
+    // define os tamanhos
+        this.gameScreen.style.height = '${this.height}px';
+        this.gameScreen.style.width = '${this.width}px';
+    
+        // Esconde o start screen
+        this.startScreen.style.display = 'none';
+    
+        // momstra o game screen
+        this.gameScreen.style.display = 'block';
+    
+        // Set up game loop interval
+        this.gameIntervalId = setInterval(() => {
+            this.gameLoop();
+        }, this.gameLoopFrequency);
+    }
 
-    this.gameIntervalId = setInterval(()=>{  // SetInterval How often queremos chamar esta função
-this.gameLoop()
-    },this.gameLoopFrequency) 
-}
+
 
 gameLoop(){
 this.update()

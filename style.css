@@ -3,10 +3,29 @@ body {
     text-align: center;
   }
   
-  #game-intro {
-    padding: 20px 0px;
-  }
-  
+
+  #main-menu {  /* NAO MEXER, MAIN IMAGE DO MENU */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    padding: 20px 0; 
+    background-image: url('./assets/start.jpg');
+    background-size: cover; 
+    background-position: center; 
+    width: 100vw; 
+    height: 100vh;
+
+}
+#main-buttons button {
+    font-size: 1.2em;
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
   #game-container {
     display: flex;
     width: 100vw;
@@ -16,26 +35,18 @@ body {
   
   #game-screen {
     display: none;
-    align-content: center;
-    padding: 20px 0px;
-    overflow: hidden;
-    position: relative;
-    background-image: url(./assets/main.jpg);
+    background-image: url('./assets/main.jpg');
     background-size: cover;
-    animation: slide 5s linear infinite;
-  }
-  
-  @keyframes slide {
-    0% {
-      background-position: 0 -1000px;
-    }
-    95% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 0 50px;
-    }
-  }
+    background-repeat: repeat-x; /* Mover o background horizontalmente */
+    animation: movingBackground 10s linear infinite;  /* Ajustar a durançao para a velocidade */
+    width: 100vw;
+    height: 100vh;
+}
+
+@keyframes movingBackground {
+    from { background-position: 0 0; }
+    to { background-position: 2000% 0; }  /*Move o background de 0 -100% horizontalmente */
+}
   
   #game-end {
     display: none;
@@ -44,23 +55,4 @@ body {
   .game-intro p {
     font-size: 18px;
     font-family: "Verdana";
-  }
-  
-  .logo-img {
-    width: 350px;
-  }
-  
-  .arrows-img {
-    width: 150px;
-  }
-  
-  body button {
-    font-size: 30px;
-    background-color: #870007;
-    color: #fff;
-    padding: 20px 40px;
-    border: 0;
-    box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
   }
