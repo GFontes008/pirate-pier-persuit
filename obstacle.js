@@ -1,29 +1,33 @@
-// Classe que representa um obstáculo
 class Obstacle {
-    constructor(gameScreen) {
-        this.gameScreen = gameScreen;
-        this.element = document.createElement('div');
-        this.element.style.backgroundImage = "url('./assets/cannonball.png')"
-        this.element.className = 'obstacle';
-        this.element.style.backgroundSize = 'contain'; // Isto assegura que a background image é resized to fit nas dimensoes do obstaculo sem o fazer cortar ou esticar
-        this.gameScreen.appendChild(this.element);
+    constructor(gameScreen, position) {
+        this.gameScreen = gameScreen; // Reference to the game screen element
+        this.element = document.createElement('div'); // Create a div element for the obstacle
+        this.element.classList.add('obstacle'); // Add the 'obstacle' class to the obstacle element
+        this.element.classList.add(position === 'top' ? 'obstacle-top' : 'obstacle-bottom'); // Add the corresponding position class
+        this.gameScreen.appendChild(this.element); // Append the obstacle element to the game screen
 
-        // Define a posição inicial e tamanho do obstáculo
-        this.element.style.position = 'absolute';
-        this.element.style.width = '100px';
-        this.element.style.height = '100px';
-        this.element.style.top = `${Math.random() * (gameScreen.clientHeight - 50)}px`;
-        this.element.style.left = `${gameScreen.clientWidth}px`;
-        this.speed = 3; // Velocidade do obstáculo
+        // Set initial position based on top or bottom
+        if (position === 'top') {
+            this.element.style.top = '0'; // Position at the top of the screen
+        } else if (position === 'bottom') {
+            this.element.style.bottom = '0'; // Position at the bottom of the screen
+        }
+
+        // Set initial horizontal position (outside the screen)
+        this.element.style.left = `${this.gameScreen.clientWidth}px`;
+
+        // Set obstacle speed
+        this.speed = 3; // Adjust as needed
     }
 
-    // Função que move o obstáculo
+    // Method to move the obstacle
     move() {
-        this.element.style.left = `${this.element.offsetLeft - this.speed}px`;
+        this.element.style.left = `${this.element.offsetLeft - this.speed}px`; // Move the obstacle to the left
     }
 
-    // Função para remover o obstáculo quando sai da tela
+    // Method to check if the obstacle is out of the screen
     remove() {
-        return this.element.offsetLeft < -50;
+        const screenLeftEdge = 0; // Define the left edge of the screen
+        return this.element.offsetLeft < screenLeftEdge; // Return true if the obstacle has moved out of the screen
     }
 }

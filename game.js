@@ -66,7 +66,7 @@ class Game {
         }
 
         // Move o background
-        this.backgroundX -= 2; // Ajusta a velocidade conforme necessário
+        this.backgroundX -= 30; // Ajusta a velocidade conforme necessário
         this.gameScreen.style.backgroundPosition = `${this.backgroundX}px 0`;
 
         // Atualiza a posição dos obstáculos
@@ -79,7 +79,7 @@ class Game {
             // Verifica colisão com o jogador
             if (this.checkCollision(this.player.element, obstacle.element)) {
 
-                // baixa 1 de vida
+                
                 this.lives -= 1;
                 if (this.lives <= 0) {
                     this.isGameOver = true;
@@ -112,8 +112,14 @@ class Game {
 
     // Função que cria um obstáculo
     createObstacle() {
-        const obstacle = new Obstacle(this.gameScreen);
-        this.obstacles.push(obstacle);
+        const obstaclePosition = Math.random() < 0.5 ? 'top' : 'bottom'; // Determina se posiciona o objeto no top ou bottom of the screen
+
+         // Imagens top e bottom
+    const obstacleImageUrl = obstaclePosition === 'top' ? './assets/cannonball.png' : './assets/crab.png';
+
+        // cria um obstaculo na posiçao definida acima
+        const obstacle = new Obstacle(this.gameScreen, obstaclePosition);
+    this.obstacles.push(obstacle);
     }
 
     // Função que atualiza a exibição do score e das vidas
