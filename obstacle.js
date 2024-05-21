@@ -1,33 +1,36 @@
+// obstacle.js
+
 class Obstacle {
-    constructor(gameScreen, position) {
-        this.gameScreen = gameScreen; // Reference to the game screen element
-        this.element = document.createElement('div'); // Create a div element for the obstacle
-        this.element.classList.add('obstacle'); // Add the 'obstacle' class to the obstacle element
-        this.element.classList.add(position === 'top' ? 'obstacle-top' : 'obstacle-bottom'); // Add the corresponding position class
-        this.gameScreen.appendChild(this.element); // Append the obstacle element to the game screen
+    constructor() {
+        // Create a new obstacle element
+        this.element = document.createElement('img');
+        this.element.src = './assets/cannonball.png'; // Replace with your obstacle image path
+        this.element.classList.add('obstacle');
+        
+        // Set initial position
+        this.x = window.innerWidth; // Start at the right edge
+        this.y = Math.random() * (window.innerHeight - 50); // Random vertical position, adjust height as needed
 
-        // Set initial position based on top or bottom
-        if (position === 'top') {
-            this.element.style.top = '0'; // Position at the top of the screen
-        } else if (position === 'bottom') {
-            this.element.style.bottom = '0'; // Position at the bottom of the screen
-        }
+        // Set initial styles
+        this.element.style.position = 'absolute';
+        this.element.style.top = `${this.y}px`;
+        this.element.style.left = `${this.x}px`;
+        this.element.style.width = '50px'; // Adjust width as needed
+        this.element.style.height = 'auto'; // Maintain aspect ratio
+        this.speed = 5; // Adjust speed as needed
 
-        // Set initial horizontal position (outside the screen)
-        this.element.style.left = `${this.gameScreen.clientWidth}px`;
-
-        // Set obstacle speed
-        this.speed = 3; // Adjust as needed
+        // Add the obstacle to the game screen
+        document.getElementById('game-screen').appendChild(this.element);
     }
 
-    // Method to move the obstacle
     move() {
-        this.element.style.left = `${this.element.offsetLeft - this.speed}px`; // Move the obstacle to the left
+        // Move the obstacle to the left
+        this.x -= this.speed;
+        this.element.style.left = `${this.x}px`;
     }
 
-    // Method to check if the obstacle is out of the screen
-    remove() {
-        const screenLeftEdge = 0; // Define the left edge of the screen
-        return this.element.offsetLeft < screenLeftEdge; // Return true if the obstacle has moved out of the screen
+    isOffScreen() {
+        // Check if the obstacle is off the screen
+        return this.x + this.element.offsetWidth < 0;
     }
 }

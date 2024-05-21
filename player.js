@@ -1,50 +1,48 @@
-// Classe que representa o jogador
+// player.js
+
 class Player {
-    constructor(gameScreen) {
-        this.gameScreen = gameScreen;
-        this.element = document.getElementById('player');
-        this.speed = 5; // Define a velocidade do jogador
-        this.moveUp = false;
-        this.moveDown = false;
+    constructor() {
+        // Get player element from the DOM
+        this.playerElement = document.getElementById('player');
 
-        // eventListener para as teclas
-        window.addEventListener('keydown', (event) => this.handleKeyDown(event));
-        window.addEventListener('keyup', (event) => this.handleKeyUp(event));
+        // Initial position of the player
+        this.x = 50; // Adjust as needed
+        this.y = 200; // Adjust as needed
+        this.speed = 10; // Adjust movement speed as needed
+
+        // Bind the context of the handleKeyDown function to the Player instance
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        // Add event listener for keydown event
+        document.addEventListener('keydown', this.handleKeyDown);
+
+        // Initial rendering of the player's position
+        this.updatePosition();
     }
 
-    // Função para a tecla pressionada
     handleKeyDown(event) {
-        if (event.key === 'ArrowUp') {
-            this.moveUp = true;
+        // Get the code of the pressed key
+        const keyCode = event.keyCode;
+
+        // Move the player up if the Up arrow key is pressed
+        if (keyCode === 38) { // Up arrow key
+            this.y = Math.max(0, this.y - this.speed); // Prevent moving out of the screen
         }
-        if (event.key === 'ArrowDown') {
-            this.moveDown = true;
+        // Move the player down if the Down arrow key is pressed
+        else if (keyCode === 40) { // Down arrow key
+            this.y = Math.min(window.innerHeight - this.playerElement.offsetHeight, this.y + this.speed); // Prevent moving out of the screen
         }
+
+        // Update player's position
+        this.updatePosition();
     }
 
-    // Função para a tecla solta
-    handleKeyUp(event) {
-        if (event.key === 'ArrowUp') {
-            this.moveUp = false;
-        }
-        if (event.key === 'ArrowDown') {
-            this.moveDown = false;
-        }
-    }
-
-    // Função que move o jogador
-    move() {
-        const gameScreenHeight = this.gameScreen.clientHeight;
-        const playerHeight = this.element.clientHeight;
-
-        // Move o jogador para cima
-        if (this.moveUp) {
-            this.element.style.top = `${Math.max(0, this.element.offsetTop - this.speed)}px`;
-        }
-
-        // Move o jogador para baixo
-        if (this.moveDown) {
-            this.element.style.top = `${Math.min(gameScreenHeight - playerHeight, this.element.offsetTop + this.speed)}px`;
-        }
+    updatePosition() {
+        // Update the position of the player element on the screen
+        this.playerElement.style.top = this.y + 'px';
     }
 }
+
+// Initialize the player when the game starts
+document.addEventListener("DOMContentLoaded", function() {
+    const player = new Player();
+});
