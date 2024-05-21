@@ -15,7 +15,7 @@ class Obstacle {
         this.element.style.position = 'absolute';
         this.element.style.top = `${this.y}px`;
         this.element.style.left = `${this.x}px`;
-        this.element.style.width = '50px'; // Adjust width as needed
+        this.element.style.width = '75px'; // Adjust width as needed
         this.element.style.height = 'auto'; // Maintain aspect ratio
         this.speed = 5; // Adjust speed as needed
 

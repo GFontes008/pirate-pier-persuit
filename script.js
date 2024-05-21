@@ -1,3 +1,5 @@
+// script.js
+
 document.addEventListener("DOMContentLoaded", function() {
     // Add event listener to the start button
     const startButton = document.getElementById('start-button');
@@ -27,9 +29,18 @@ function restartGame() {
     const gameEnd = document.getElementById('game-end');
     gameEnd.style.display = 'none';
 
-    // Reset lives
+    // Reset lives and score
     document.getElementById('lives').innerText = 3;
+    document.getElementById('score').innerText = 0;
 
-    // Start a new game
-    startGame();
+    // Remove existing obstacles from the game screen
+    const obstacles = document.querySelectorAll('.obstacle');
+    obstacles.forEach(obstacle => obstacle.remove());
+
+    // Display the game screen
+    const gameScreen = document.getElementById('game-screen');
+    gameScreen.style.display = 'block';
+
+    // Initialize the game
+    new Game(); // Instantiate the Game class
 }

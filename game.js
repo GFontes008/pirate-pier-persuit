@@ -1,4 +1,3 @@
-// game.js
 class Game {
     constructor() {
         // Array to store obstacle objects
@@ -6,6 +5,12 @@ class Game {
 
         // Player lives
         this.lives = 3;
+
+        // Player score
+        this.score = 0;
+
+        // Maximum score to end the game
+        this.maxScore = 250;
 
         // Interval for spawning obstacles
         this.obstacleSpawnInterval = 2000; // Adjust as needed
@@ -38,8 +43,16 @@ class Game {
                 return false;
             }
             if (obstacle.isOffScreen()) {
-                // Remove the obstacle element from the DOM
+                // Increase score by 10 when the obstacle moves off-screen
+                this.score += 10;
+                document.getElementById('score').innerText = this.score;
                 obstacle.element.remove();
+                
+                // Check if the score has reached the maximum score
+                if (this.score >= this.maxScore) {
+                    this.endGame();
+                }
+
                 return false; // Remove from array
             }
             return true;
@@ -65,7 +78,9 @@ class Game {
 
         // Show the game-over screen
         document.getElementById('game-end').style.display = 'flex';
-        document.getElementById('end-message').innerText = 'Game Over! You lost all your lives.';
+        document.getElementById('end-message').innerText = this.lives <= 0 ? 
+            `The sands got you this time, maybe some rum will help next time!${this.score}.` : 
+            `Good Captain, you've menaged to catch up with your crew!!! ${this.maxScore}.`;
     }
 
     gameLoop() {
