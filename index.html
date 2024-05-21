@@ -19,17 +19,27 @@
 
         <!-- Ecrã do Jogo -->
         <div id="game-screen" style="display: none;">
-            <img id="player" src="./assets/pirateCharPng.png" alt="Character">
+            <!-- Background image and game content -->
+            <div class="game-content">
+                <img id="player" src="./assets/pirateCharPng.png" alt="Character">
+                <div id="game-stats">
+                    <h2>Stats</h2>
+                    <p>Score: <span id="score">0</span></p>
+                    <p>Lives: <span id="lives">3</span></p>
+                </div>
+            </div>
         </div>
 
         <!-- Ecrã de Fim de Jogo -->
         <div id="game-end" style="display: none;">
+            <img id="backgroundEndGame" src="./assets/backgroundMain.jpeg" alt="backgroundEndGame">
             <h1 id="end-message"></h1>
             <button id="restart-button">Restart</button>
-        </div>
+            
     </main>
     <script src="./player.js"></script>
     <script src="./game.js"></script>
+    <script src="obstacle.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
