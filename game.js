@@ -11,14 +11,17 @@ class Game {
 
         // Maximum score to end the game
         this.maxScore = 250;
+        
+        // Keep track of the final score
+        this.finalScore = 0;
 
         // Interval for spawning obstacles
         this.obstacleSpawnInterval = 2000; // Adjust as needed
-        setInterval(this.spawnObstacle.bind(this), this.obstacleSpawnInterval);
+        this.obstacleIntervalId = setInterval(this.spawnObstacle.bind(this), this.obstacleSpawnInterval);
 
         // Start the game loop
         this.gameLoop = this.gameLoop.bind(this);
-        requestAnimationFrame(this.gameLoop);
+        this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
 
     spawnObstacle() {
@@ -44,7 +47,8 @@ class Game {
             }
             if (obstacle.isOffScreen()) {
                 // Increase score by 10 when the obstacle moves off-screen
-                this.score += 10;
+                this.score += 10;  
+                this.finalScore = this.score;
                 document.getElementById('score').innerText = this.score;
                 obstacle.element.remove();
                 
@@ -77,10 +81,17 @@ class Game {
         document.getElementById('game-screen').style.display = 'none';
 
         // Show the game-over screen
-        document.getElementById('game-end').style.display = 'flex';
+        const gameEnd = document.getElementById('game-end');
+        gameEnd.style.display = 'flex';
         document.getElementById('end-message').innerText = this.lives <= 0 ? 
-            `The sands got you this time, maybe some rum will help next time!${this.score}.` : 
-            `Good Captain, you've menaged to catch up with your crew!!! ${this.maxScore}.`;
+            `The sands got you this time, maybe some rum will help next time! Your score: ${this.score}.` : 
+            `Good Captain, you've managed to catch up with your crew! Your score: ${this.maxScore}.`;
+
+        // Stop spawning obstacles
+        clearInterval(this.obstacleIntervalId);
+
+        // Cancel the game loop
+        cancelAnimationFrame(this.gameLoopId);
     }
 
     gameLoop() {
@@ -88,7 +99,7 @@ class Game {
         this.updateObstacles();
         
         // Request the next frame
-        requestAnimationFrame(this.gameLoop);
+        this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
 }
 

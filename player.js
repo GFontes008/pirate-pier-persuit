@@ -1,5 +1,3 @@
-// player.js
-
 class Player {
     constructor() {
         // Get player element from the DOM

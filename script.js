@@ -1,6 +1,8 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", function() {
+    // Hide the game-end screen initially
+    const gameEnd = document.getElementById('game-end');
+    gameEnd.style.display = 'none';
+
     // Add event listener to the start button
     const startButton = document.getElementById('start-button');
     startButton.addEventListener('click', startGame);
@@ -8,9 +10,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add event listener to the restart button
     const restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', restartGame);
+
+    // Add event listener to the mute button
+    const muteButton = document.getElementById('mute-button');
+    muteButton.addEventListener('click', toggleMute);
 });
 
 function startGame() {
+    // Stop main menu music and play game screen music
+    document.getElementById('main-menu-music').pause();
+    document.getElementById('game-screen-music').play();
+
     // Hide the main menu
     const mainMenu = document.getElementById('main-menu');
     mainMenu.style.display = 'none';
@@ -25,7 +35,11 @@ function startGame() {
 }
 
 function restartGame() {
-    // Hide the game-over screen
+    // Stop game screen music and play main menu music
+    document.getElementById('game-screen-music').pause();
+    document.getElementById('main-menu-music').play();
+
+    // Hide the game-end screen
     const gameEnd = document.getElementById('game-end');
     gameEnd.style.display = 'none';
 
@@ -43,4 +57,18 @@ function restartGame() {
 
     // Initialize the game
     new Game(); // Instantiate the Game class
+}
+
+function toggleMute() {
+    const mainMenuMusic = document.getElementById('main-menu-music');
+    const gameScreenMusic = document.getElementById('game-screen-music');
+    
+    // Toggle mute for both music tracks
+    if (mainMenuMusic.paused && gameScreenMusic.paused) {
+        mainMenuMusic.play();
+        gameScreenMusic.play();
+    } else {
+        mainMenuMusic.pause();
+        gameScreenMusic.pause();
+    }
 }
