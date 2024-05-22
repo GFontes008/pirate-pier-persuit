@@ -1,36 +1,34 @@
-// obstacle.js
-
 class Obstacle {
     constructor() {
-        // Create a new obstacle element
+        // Criar um novo elemento obstáculo
         this.element = document.createElement('img');
-        this.element.src = './assets/cannonball.png'; // Replace with your obstacle image path
+        this.element.src = './assets/cannonball.png'; // Substitua pelo caminho da imagem do seu obstáculo
         this.element.classList.add('obstacle');
         
-        // Set initial position
-        this.x = window.innerWidth; // Start at the right edge
-        this.y = Math.random() * (window.innerHeight - 50); // Random vertical position, adjust height as needed
+        // Definir posição inicial
+        this.x = window.innerWidth; // Começa na borda direita
+        this.y = Math.random() * (window.innerHeight - 50); // Posição vertical aleatória, ajuste a altura conforme necessário
 
-        // Set initial styles
+        // Definir estilos iniciais
         this.element.style.position = 'absolute';
         this.element.style.top = `${this.y}px`;
         this.element.style.left = `${this.x}px`;
-        this.element.style.width = '75px'; // Adjust width as needed
-        this.element.style.height = 'auto'; // Maintain aspect ratio
-        this.speed = 5; // Adjust speed as needed
+        this.element.style.width = '75px'; // Ajuste a largura conforme necessário
+        this.element.style.height = 'auto'; // Manter a proporção
+        this.speed = 10; // Aumentar a velocidade
 
-        // Add the obstacle to the game screen
+        // Adicionar o obstáculo à tela do jogo
         document.getElementById('game-screen').appendChild(this.element);
     }
 
     move() {
-        // Move the obstacle to the left
+        // Mover o obstáculo para a esquerda
         this.x -= this.speed;
         this.element.style.left = `${this.x}px`;
     }
 
     isOffScreen() {
-        // Check if the obstacle is off the screen
+        // Verificar se o obstáculo está fora da tela
         return this.x + this.element.offsetWidth < 0;
     }
 }

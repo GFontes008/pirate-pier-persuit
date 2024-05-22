@@ -1,66 +1,66 @@
-/* Reset default margin and padding */
+/* Resetar margem e preenchimento padrão */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /* Define a fonte padrão */
 }
 
-/* Center everything vertically and horizontally */
+/* Centralizar tudo vertical e horizontalmente */
 #main-menu, #game-end {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Full height of the viewport */
-    background-size: cover; /* Ensure the background covers the entire area */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Prevent the background from repeating */
-    text-align: center; /* Center text alignment */
-    color: white; /* Set text color to ensure visibility */
-    padding: 20px; /* Add some padding for better spacing */
+    height: 100vh; /* Altura total da janela de visualização */
+    background-size: cover; /* Garantir que o fundo cubra toda a área */
+    background-position: center; /* Centralizar a imagem de fundo */
+    background-repeat: no-repeat; /* Impedir repetição da imagem de fundo */
+    text-align: center; /* Centralizar alinhamento do texto */
+    color: white; /* Definir cor do texto para garantir visibilidade */
+    padding: 20px; /* Adicionar algum preenchimento para melhor espaçamento */
 }
 
 #main-menu {
-    background-image: url('./assets/start.jpg'); /* Update the path if necessary */
+    background-image: url('./assets/start.jpg'); /* Caminho da imagem de fundo para o menu principal */
 }
 
 #game-end {
-    background-image: url('./assets/backgroundMain.jpeg'); /* Update the path if necessary */
-    display: none; /* Hide game-end screen by default */
+    background-image: url('./assets/backgroundMain.jpeg'); /* Caminho da imagem de fundo para o ecrã final */
+    display: none; /* Ocultar ecrã de fim de jogo por padrão */
 }
 
-/* Text styles */
+/* Estilos de texto */
 #main-menu h1, #game-end h1 {
-    font-size: 3rem; /* Adjust font size */
-    margin-bottom: 20px; /* Adjust margin */
+    font-size: 3rem; /* Ajustar tamanho da fonte */
+    margin-bottom: 20px; /* Ajustar margem inferior */
 }
 
 #main-menu h2, #game-end p {
-    font-size: 1.5rem; /* Adjust font size */
-    margin-bottom: 20px; /* Adjust margin */
+    font-size: 1.5rem; /* Ajustar tamanho da fonte */
+    margin-bottom: 20px; /* Ajustar margem inferior */
 }
 
 #main-menu p {
-    font-size: 1rem; /* Adjust font size */
-    margin-bottom: 20px; /* Adjust margin */
+    font-size: 1rem; /* Ajustar tamanho da fonte */
+    margin-bottom: 20px; /* Ajustar margem inferior */
 }
 
-/* Button styles */
+/* Estilos de botão */
 button {
-    margin: 10px 0; /* Adjust margins for spacing */
-    padding: 15px 30px; /* Add padding for better appearance */
-    font-size: 1rem; /* Adjust font size */
-    background-color: #333; /* Set background color */
-    color: white; /* Set text color */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Add border radius */
-    cursor: pointer; /* Change cursor to pointer on hover */
-    transition: background-color 0.3s; /* Smooth transition for background color */
+    margin: 10px 0; /* Ajustar margens para espaçamento */
+    padding: 15px 30px; /* Adicionar preenchimento para melhor aparência */
+    font-size: 1rem; /* Ajustar tamanho da fonte */
+    background-color: #333; /* Definir cor de fundo */
+    color: white; /* Definir cor do texto */
+    border: none; /* Remover borda padrão */
+    border-radius: 5px; /* Adicionar raio de borda */
+    cursor: pointer; /* Mudar cursor para ponteiro ao passar por cima */
+    transition: background-color 0.3s; /* Transição suave para cor de fundo */
 }
 
 button:hover {
-    background-color: #555; /* Change background color on hover */
+    background-color: #555; /* Mudar cor de fundo ao passar o mouse */
 }
 
 #game-screen {
@@ -70,35 +70,37 @@ button:hover {
     height: 100vh;
     width: 100%;
     background-image: url('./assets/main.jpg');
-    background-size: cover; /* Scale the image to cover the entire screen */
-    background-repeat: no-repeat; /* Prevent image repetition */
-    background-position: center; /* Center the image */
-    position: relative; /* Ensure absolute positioning of child elements like player */
+    background-size: cover; /* Escalar a imagem para cobrir toda a tela */
+    background-repeat: no-repeat; /* Impedir repetição da imagem */
+    background-position: center; /* Centralizar a imagem */
+    position: relative; /* Garantir posicionamento absoluto dos elementos filhos como o jogador */
 }
 
-/* Player and obstacle styles */
+/* Estilos do jogador e dos obstáculos */
 #player {
     position: absolute;
     width: 100px;
     height: 100px;
-    transition: top 0.1s ease; /* Add smooth transition for top property */
+    transition: top 0.05s ease; /* Aumentar a velocidade do movimento */
 }
 
 .obstacle {
     position: absolute;
-    width: 75px; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 75px; /* Ajustar largura conforme necessário */
+    height: auto; /* Manter proporção */
 }
 
-/* Game stats styles */
+/* Estilos de estatísticas do jogo */
 #game-stats {
     position: absolute;
     top: 20px;
-    left: 20px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     color: white;
     padding: 10px;
     border-radius: 5px;
+    text-align: center;
 }
 
 #game-stats h2 {
@@ -109,178 +111,12 @@ button:hover {
     margin: 5px 0;
 }
 
-Updated JavaScript
-
-We'll update the JavaScript to include smoother character movement and ensure the game-end screen is hidden appropriately during the game.
-player.js
-
-javascript
-
-class Player {
-    constructor() {
-        // Get player element from the DOM
-        this.playerElement = document.getElementById('player');
-
-        // Initial position of the player
-        this.x = 50; // Adjust as needed
-        this.y = 200; // Adjust as needed
-        this.speed = 10; // Adjust movement speed as needed
-
-        // Bind the context of the handleKeyDown function to the Player instance
-        this.handleKeyDown = this.handleKeyDown.bind(this);
-        // Add event listener for keydown event
-        document.addEventListener('keydown', this.handleKeyDown);
-
-        // Initial rendering of the player's position
-        this.updatePosition();
-    }
-
-    handleKeyDown(event) {
-        // Get the code of the pressed key
-        const keyCode = event.keyCode;
-
-        // Move the player up if the Up arrow key is pressed
-        if (keyCode === 38) { // Up arrow key
-            this.y = Math.max(0, this.y - this.speed); // Prevent moving out of the screen
-        }
-        // Move the player down if the Down arrow key is pressed
-        else if (keyCode === 40) { // Down arrow key
-            this.y = Math.min(window.innerHeight - this.playerElement.offsetHeight, this.y + this.speed); // Prevent moving out of the screen
-        }
-
-        // Update player's position
-        this.updatePosition();
-    }
-
-    updatePosition() {
-        // Update the position of the player element on the screen
-        this.playerElement.style.top = this.y + 'px';
-    }
-}
-
-// Initialize the player when the game starts
-document.addEventListener("DOMContentLoaded", function() {
-    const player = new Player();
-});
-
-game.js
-
-javascript
-
-class Game {
-    constructor() {
-        // Array to store obstacle objects
-        this.obstacles = [];
-
-        // Player lives
-        this.lives = 3;
-
-        // Player score
-        this.score = 0;
-
-        // Maximum score to end the game
-        this.maxScore = 250;
-        
-        // Keep track of the final score
-        this.finalScore = 0;
-
-        // Interval for spawning obstacles
-        this.obstacleSpawnInterval = 2000; // Adjust as needed
-        this.obstacleIntervalId = setInterval(this.spawnObstacle.bind(this), this.obstacleSpawnInterval);
-
-        // Start the game loop
-        this.gameLoop = this.gameLoop.bind(this);
-        this.gameLoopId = requestAnimationFrame(this.gameLoop);
-    }
-
-    spawnObstacle() {
-        // Create a new obstacle object
-        const obstacle = new Obstacle();
-        // Add the obstacle to the array
-        this.obstacles.push(obstacle);
-    }
-
-    updateObstacles() {
-        // Update obstacles position and check for collision or off-screen
-        this.obstacles = this.obstacles.filter(obstacle => {
-            obstacle.move();
-            if (this.checkCollision(obstacle)) {
-                // Handle collision
-                this.lives -= 1;
-                document.getElementById('lives').innerText = this.lives;
-                obstacle.element.remove();
-                if (this.lives <= 0) {
-                    this.endGame();
-                }
-                return false;
-            }
-            if (obstacle.isOffScreen()) {
-                // Increase score by 10 when the obstacle moves off-screen
-                this.score += 10;  
-                this.finalScore = this.score;
-                document.getElementById('score').innerText = this.score;
-                obstacle.element.remove();
-                
-                // Check if the score has reached the maximum score
-                if (this.score >= this.maxScore) {
-                    this.endGame();
-                }
-
-                return false; // Remove from array
-            }
-            return true;
-        });
-    }
-
-    checkCollision(obstacle) {
-        const player = document.getElementById('player');
-        const playerRect = player.getBoundingClientRect();
-        const obstacleRect = obstacle.element.getBoundingClientRect();
-
-        return !(
-            playerRect.top > obstacleRect.bottom ||
-            playerRect.bottom < obstacleRect.top ||
-            playerRect.left > obstacleRect.right ||
-            playerRect.right < obstacleRect.left
-        );
-    }
-
-    endGame() {
-        // Hide the game screen
-        document.getElementById('game-screen').style.display = 'none';
-
-        // Show the game-over screen
-        const gameEnd = document.getElementById('game-end');
-        gameEnd.style.display = 'flex';
-        document.getElementById('end-message').innerText = this.lives <= 0 ? 
-            `The sands got you this time, maybe some rum will help next time! Your score: ${this.score}.` : 
-            `Good Captain, you've managed to catch up with your crew! Your score: ${this.maxScore}.`;
-
-        // Stop spawning obstacles
-        clearInterval(this.obstacleIntervalId);
-
-        // Cancel the game loop
-        cancelAnimationFrame(this.gameLoopId);
-    }
-
-    gameLoop() {
-        // Update obstacles
-        this.updateObstacles();
-        
-        // Request the next frame
-        this.gameLoopId = requestAnimationFrame(this.gameLoop);
-    }
-}
-
-// Initialize the game when the game starts
-document.addEventListener("DOMContentLoaded", function() {
-    const game = new Game();
-});
-
-With these updates:
-
-    The "game-end" screen is hidden by default and only displayed when the game ends.
-    Player movement is more fluid due to the transition property applied to the top property in CSS.
-    The game loop and obstacle spawning intervals are properly managed to start and stop with the game.
-
-This should
+#mute-button-game {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    border: none;

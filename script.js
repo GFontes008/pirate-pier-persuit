@@ -1,69 +1,73 @@
+// Adicionar um ouvinte de evento para quando o DOM estiver carregado
 document.addEventListener("DOMContentLoaded", function() {
-    // Hide the game-end screen initially
+    // Esconder a tela de fim de jogo inicialmente
     const gameEnd = document.getElementById('game-end');
     gameEnd.style.display = 'none';
 
-    // Add event listener to the start button
+    // Adicionar um ouvinte de evento ao botão de iniciar
     const startButton = document.getElementById('start-button');
     startButton.addEventListener('click', startGame);
 
-    // Add event listener to the restart button
+    // Adicionar um ouvinte de evento ao botão de reiniciar
     const restartButton = document.getElementById('restart-button');
     restartButton.addEventListener('click', restartGame);
 
-    // Add event listener to the mute button
+    // Adicionar um ouvinte de evento ao botão de mutar
     const muteButton = document.getElementById('mute-button');
     muteButton.addEventListener('click', toggleMute);
 });
 
+// Função para iniciar o jogo
 function startGame() {
-    // Stop main menu music and play game screen music
+    // Parar a música do menu principal e tocar a música da tela do jogo
     document.getElementById('main-menu-music').pause();
     document.getElementById('game-screen-music').play();
 
-    // Hide the main menu
+    // Esconder o menu principal
     const mainMenu = document.getElementById('main-menu');
     mainMenu.style.display = 'none';
 
-    // Display the game screen
+    // Exibir a tela do jogo
     const gameScreen = document.getElementById('game-screen');
     gameScreen.style.display = 'block';
 
-    // Initialize the game and player
-    new Player(); // Instantiate the Player class
-    new Game(); // Instantiate the Game class
+    // Inicializar o jogo e o jogador
+    new Player(); // Instanciar a classe Player
+    new Game(); // Instanciar a classe Game
 }
 
+// Função para reiniciar o jogo
 function restartGame() {
-    // Stop game screen music and play main menu music
+    // Parar a música da tela do jogo e tocar a música do menu principal
     document.getElementById('game-screen-music').pause();
     document.getElementById('main-menu-music').play();
 
-    // Hide the game-end screen
+    // Esconder a tela de fim de jogo
     const gameEnd = document.getElementById('game-end');
     gameEnd.style.display = 'none';
 
-    // Reset lives and score
+    // Resetar vidas e pontuação
     document.getElementById('lives').innerText = 3;
     document.getElementById('score').innerText = 0;
 
-    // Remove existing obstacles from the game screen
+    // Remover obstáculos existentes da tela do jogo
     const obstacles = document.querySelectorAll('.obstacle');
     obstacles.forEach(obstacle => obstacle.remove());
 
-    // Display the game screen
+    // Exibir a tela do jogo
     const gameScreen = document.getElementById('game-screen');
     gameScreen.style.display = 'block';
 
-    // Initialize the game
-    new Game(); // Instantiate the Game class
+    // Inicializar o jogo
+    new Game(); // Instanciar a classe Game
 }
 
+// Função para alternar o mudo
 function toggleMute() {
     const mainMenuMusic = document.getElementById('main-menu-music');
     const gameScreenMusic = document.getElementById('game-screen-music');
     
-    // Toggle mute for both music tracks
+    // Alternar o mudo para ambas as faixas de música
     if (mainMenuMusic.paused && gameScreenMusic.paused) {
         mainMenuMusic.play();
         gameScreenMusic.play();

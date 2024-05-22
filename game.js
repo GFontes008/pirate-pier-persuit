@@ -1,44 +1,73 @@
 class Game {
     constructor() {
-        // Array to store obstacle objects
+        // Array para armazenar objetos de obstáculos
         this.obstacles = [];
 
-        // Player lives
+        // Vidas do jogador
         this.lives = 3;
 
-        // Player score
+        // Pontuação do jogador
         this.score = 0;
 
-        // Maximum score to end the game
+        // Pontuação máxima para terminar o jogo
         this.maxScore = 250;
-        
-        // Keep track of the final score
+
+        // Acompanhar a pontuação final
         this.finalScore = 0;
 
-        // Interval for spawning obstacles
-        this.obstacleSpawnInterval = 2000; // Adjust as needed
+        // Intervalo para gerar obstáculos
+        this.obstacleSpawnInterval = 2000; // Ajustar conforme necessário
         this.obstacleIntervalId = setInterval(this.spawnObstacle.bind(this), this.obstacleSpawnInterval);
 
-        // Start the game loop
+        // Iniciar o loop do jogo
         this.gameLoop = this.gameLoop.bind(this);
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
+
+        // Inicializar o botão de mudo na tela do jogo
+        this.initMuteButton();
+
+        // Garantir que a música da tela do jogo comece a tocar
+        document.getElementById('game-screen-music').play();
+    }
+
+    initMuteButton() {
+        // Adicionar ouvinte de evento ao botão de mudo na tela do jogo
+        const muteButtonGame = document.getElementById('mute-button-game');
+        muteButtonGame.addEventListener('click', this.toggleMute.bind(this));
+    }
+
+    toggleMute() {
+        const mainMenuMusic = document.getElementById('main-menu-music');
+        const gameScreenMusic = document.getElementById('game-screen-music');
+
+        // Alternar o mudo para ambas as faixas de música
+        if (mainMenuMusic.paused && gameScreenMusic.paused) {
+            mainMenuMusic.play();
+            gameScreenMusic.play();
+        } else {
+            mainMenuMusic.pause();
+            gameScreenMusic.pause();
+        }
     }
 
     spawnObstacle() {
-        // Create a new obstacle object
+        // Criar um novo objeto de obstáculo
         const obstacle = new Obstacle();
-        // Add the obstacle to the array
+        // Adicionar o obstáculo ao array
         this.obstacles.push(obstacle);
+        // Anexar o obstáculo à tela do jogo
+        const gameScreen = document.getElementById('game-screen');
+        gameScreen.appendChild(obstacle.element);
     }
 
     updateObstacles() {
-        // Update obstacles position and check for collision or off-screen
+        // Atualizar a posição dos obstáculos e verificar colisão ou fora da tela
         this.obstacles = this.obstacles.filter(obstacle => {
             obstacle.move();
             if (this.checkCollision(obstacle)) {
-                // Handle collision
+                // Lidar com colisão
                 this.lives -= 1;
-                document.getElementById('lives').innerText = this.lives;
+                document.getElementById('lives').innerText = `Vidas: ${this.lives}`;
                 obstacle.element.remove();
                 if (this.lives <= 0) {
                     this.endGame();
@@ -46,18 +75,18 @@ class Game {
                 return false;
             }
             if (obstacle.isOffScreen()) {
-                // Increase score by 10 when the obstacle moves off-screen
-                this.score += 10;  
+                // Aumentar a pontuação em 10 quando o obstáculo sai da tela
+                this.score += 10;
                 this.finalScore = this.score;
-                document.getElementById('score').innerText = this.score;
+                document.getElementById('score').innerText = `Pontuação: ${this.score}`;
                 obstacle.element.remove();
-                
-                // Check if the score has reached the maximum score
+
+                // Verificar se a pontuação atingiu a pontuação máxima
                 if (this.score >= this.maxScore) {
                     this.endGame();
                 }
 
-                return false; // Remove from array
+                return false; // Remover do array
             }
             return true;
         });
@@ -77,33 +106,53 @@ class Game {
     }
 
     endGame() {
-        // Hide the game screen
+        // Esconder a tela do jogo
         document.getElementById('game-screen').style.display = 'none';
-
-        // Show the game-over screen
+    
+        // Mostrar a tela de fim de jogo
         const gameEnd = document.getElementById('game-end');
         gameEnd.style.display = 'flex';
-        document.getElementById('end-message').innerText = this.lives <= 0 ? 
-            `The sands got you this time, maybe some rum will help next time! Your score: ${this.score}.` : 
-            `Good Captain, you've managed to catch up with your crew! Your score: ${this.maxScore}.`;
-
-        // Stop spawning obstacles
+    
+        // Mensagem padrão
+        let endMessage = '';
+    
+        // Verificar se a pontuação é 250 ou se as vidas são zero
+        if (this.score >= this.maxScore) {
+            endMessage = `Bom Capitão, conseguiu alcançar sua tripulação! Sua pontuação: ${this.score}.`;
+        } else if (this.lives <= 0) {
+            endMessage = `As areias te pegaram desta vez, talvez um pouco de rum ajude na próxima vez! Sua pontuação: ${this.score}.`;
+        }
+    
+        // Definir a mensagem de fim
+        document.getElementById('end-message').innerText = endMessage;
+    
+        // Parar de gerar obstáculos
         clearInterval(this.obstacleIntervalId);
-
-        // Cancel the game loop
+    
+        // Cancelar o loop do jogo
         cancelAnimationFrame(this.gameLoopId);
     }
 
     gameLoop() {
-        // Update obstacles
+        // Atualizar os obstáculos
         this.updateObstacles();
-        
-        // Request the next frame
+
+        // Solicitar o próximo frame
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
 }
 
-// Initialize the game when the game starts
+// Inicializar o jogo quando o jogo começa
 document.addEventListener("DOMContentLoaded", function() {
-    const game = new Game();
+    const startButton = document.getElementById('start-button');
+    startButton.addEventListener('click', () => {
+        document.getElementById('main-menu-music').pause();
+        new Game();
+    });
+
+    const restartButton = document.getElementById('restart-button');
+    restartButton.addEventListener('click', () => {
+        document.getElementById('main-menu-music').play();
+        new Game();
+    });
 });

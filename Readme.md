@@ -1,36 +1,25 @@
 Description
 
-Frog Hop: Pirate's Cove is a simple web-based game where players control a pirate crab navigating across a treacherous beach to reach the safety of a pirate ship. The game is designed to be beginner-friendly and uses basic HTML, CSS, and JavaScript.
-Features
-
-    HTML, CSS, and JavaScript-based game.
-    Navigate the pirate crab using arrow keys.
-    Avoid obstacles like rolling barrels and waves.
-    Reach the pirate ship to win the game.
-    Simple win/lose conditions.
-    Life and move counters to track progress.
-
-
+Pirate Adventure Game
+Welcome to the Pirate Adventure Game! This game challenges you to navigate through treacherous waters and obstacles to reach your crew or achieve a high score.
 
 Getting Started
+To play the game, simply open the index.html file in your web browser.
 
-    Clone the repository: 
-    Open index.html in your web browser to start the game.
-
-
-
-Usage
-
-    Use the arrow keys to move the pirate crab left, right, up, or down.
-    Avoid obstacles by maneuvering the crab through safe zones.
-    Reach the pirate ship to win the game.
-    Watch out for rolling barrels and waves!
-    If you collide with an obstacle or run out of moves, it's game over.
-
-
-
-Inspiration
-
-    Inspired by classic Frogger games.
-
-
+Gameplay
+Use the start button to begin the game.
+Use the arrow keys to control the player's ship.
+Avoid obstacles by navigating around them.
+Collect treasures to increase your score.
+Reach your crew or achieve a score of 250 to win.
+Features
+Real-time obstacle spawning.
+Dynamic scoring system.
+Engaging gameplay with immersive sound effects.
+Responsive controls for smooth navigation.
+Technologies Used
+HTML
+CSS
+JavaScript
+Credits
+This game was created by [Your Name] as a project for [Course/Workshop Name], inspired by classic adventure games.

@@ -1,46 +1,46 @@
 class Player {
     constructor() {
-        // Get player element from the DOM
+        // Obter o elemento do jogador do DOM
         this.playerElement = document.getElementById('player');
 
-        // Initial position of the player
-        this.x = 50; // Adjust as needed
-        this.y = 200; // Adjust as needed
-        this.speed = 10; // Adjust movement speed as needed
+        // Posição inicial do jogador
+        this.x = 50; // Ajustar conforme necessário
+        this.y = 200; // Ajustar conforme necessário
+        this.speed = 10; // Ajustar velocidade de movimento conforme necessário
 
-        // Bind the context of the handleKeyDown function to the Player instance
+        // Vincular o contexto da função handleKeyDown à instância de Player
         this.handleKeyDown = this.handleKeyDown.bind(this);
-        // Add event listener for keydown event
+        // Adicionar um ouvinte de evento para o evento de pressionar uma tecla
         document.addEventListener('keydown', this.handleKeyDown);
 
-        // Initial rendering of the player's position
+        // Renderização inicial da posição do jogador
         this.updatePosition();
     }
 
     handleKeyDown(event) {
-        // Get the code of the pressed key
+        // Obter o código da tecla pressionada
         const keyCode = event.keyCode;
 
-        // Move the player up if the Up arrow key is pressed
-        if (keyCode === 38) { // Up arrow key
-            this.y = Math.max(0, this.y - this.speed); // Prevent moving out of the screen
+        // Mover o jogador para cima se a tecla de seta para cima for pressionada
+        if (keyCode === 38) { // Tecla de seta para cima
+            this.y = Math.max(0, this.y - this.speed); // Impedir que saia da tela
         }
-        // Move the player down if the Down arrow key is pressed
-        else if (keyCode === 40) { // Down arrow key
-            this.y = Math.min(window.innerHeight - this.playerElement.offsetHeight, this.y + this.speed); // Prevent moving out of the screen
+        // Mover o jogador para baixo se a tecla de seta para baixo for pressionada
+        else if (keyCode === 40) { // Tecla de seta para baixo
+            this.y = Math.min(window.innerHeight - this.playerElement.offsetHeight, this.y + this.speed); // Impedir que saia da tela
         }
 
-        // Update player's position
+        // Atualizar a posição do jogador
         this.updatePosition();
     }
 
     updatePosition() {
-        // Update the position of the player element on the screen
+        // Atualizar a posição do elemento do jogador na tela
         this.playerElement.style.top = this.y + 'px';
     }
 }
 
-// Initialize the player when the game starts
+// Inicializar o jogador quando o jogo começa
 document.addEventListener("DOMContentLoaded", function() {
     const player = new Player();
 });

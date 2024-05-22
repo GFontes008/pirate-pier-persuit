@@ -4,46 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pirate Pier Pursuit</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css"> <!-- Importar folha de estilos -->
 </head>
 <body>
     <main>
         <!-- Menu Principal -->
         <div id="main-menu">
-            <h1>Pirate Pier Pursuit</h1>
-            <h2>Survive the pier, Escape the sands and conquer the sea</h2>
-            <p>Use the UP and Down arrows to move</p>
-            <p>Every obstacle avoided seems to increase you Captain reputation by 5 points</p>
-            <button id="start-button">Start Quest</button>
-            <button id="mute-button">Silence Shanties</button>
+            <h1>Pirate Pier Pursuit</h1> <!-- Título do jogo -->
+            <h2>Survive the pier, Escape the sands and conquer the sea</h2> <!-- Subtítulo do jogo -->
+            <p>Use the UP and Down arrows to move</p> <!-- Instruções para jogar -->
+            <p>Every obstacle avoided seems to increase you Captain reputation by 5 points</p> <!-- Informação sobre a pontuação -->
+            <button id="start-button">Start Quest</button> <!-- Botão para iniciar o jogo -->
+            <button id="mute-button">Silence Shanties</button> <!-- Botão para silenciar a música -->
         </div>
 
         <!-- Ecrã do Jogo -->
         <div id="game-screen" style="display: none;"">
-            <!-- Background image and game content -->
+            <!-- Conteúdo do Jogo -->
             <div class="game-content">
-                <img id="player" src="./assets/pirateCharPng.png" alt="Character">
+                <img id="player" src="./assets/pirateCharPng.png" alt="Character"> <!-- Imagem do jogador -->
                 <div id="game-stats">
-                    <h2>Stats</h2>
-                    <p>Score: <span id="score">0</span></p>
-                    <p>Lives: <span id="lives">3</span></p>
+                    <h2>Stats</h2> <!-- Título das estatísticas do jogo -->
+                    <p>Score: <span id="score">0</span></p> <!-- Pontuação atual do jogador -->
+                    <p>Lives: <span id="lives">3</span></p> <!-- Vidas restantes do jogador -->
                 </div>
             </div>
         </div>
 
-        <audio id="main-menu-music" src="./assets/648593__elenalostale__ambience-port-pirates.wav preload="auto" loop autoplay></audio>
-        <audio id="game-screen-music" src="./assets/game music.wav" preload="auto" loop></audio>
+        <audio id="main-menu-music" src="./assets/648593__elenalostale__ambience-port-pirates.wav preload="auto" loop autoplay></audio> <!-- Música do menu principal -->
+        <audio id="game-screen-music" src="./assets/game music.wav" preload="auto" loop></audio> <!-- Música do jogo -->
 
         <!-- Ecrã de Fim de Jogo -->
         <div id="game-end" style="display: none; align-items: center; justify-content: center;">
-            <img id="backgroundEndGame" src="./assets/backgroundMain.jpeg" alt="backgroundEndGamestyle" style ="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1;"">
-            <h1 id="end-message"></h1>
-            <button id="restart-button">Restart</button>
+            <img id="backgroundEndGame" src="./assets/backgroundMain.jpeg" alt="backgroundEndGamestyle" style ="position: absolute; width: 100%; height: 100%; object-fit: cover; z-index: -1;""> <!-- Imagem de fundo para o ecrã de fim de jogo -->
+            <h1 id="end-message"></h1> <!-- Mensagem de fim de jogo -->
+            <button id="restart-button">Restart</button> <!-- Botão para reiniciar o jogo -->
             
     </main>
-    <script src="./player.js"></script>
-    <script src="./game.js"></script>
-    <script src="obstacle.js"></script>
-    <script src="./script.js"></script>
+    <script src="./player.js"></script> <!-- Script para o jogador -->
+    <script src="./game.js"></script> <!-- Script para o jogo -->
+    <script src="obstacle.js"></script> <!-- Script para os obstáculos -->
+    <script src="./script.js"></script> <!-- Script principal -->
 </body>
 </html>
