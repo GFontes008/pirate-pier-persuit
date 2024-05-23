@@ -62,7 +62,7 @@ class Game {
 
     
     updateObstacles() {
-        // Update a posiçao do obstaculo e verifica colisao e se o obstaculo esta off-screen
+        // Update a posiçao do obstaculo e verifica colisao e se o obstaculo esta
         this.obstacles = this.obstacles.filter(obstacle => {
             obstacle.move();
             if (this.checkCollision(obstacle)) {
