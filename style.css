@@ -1,66 +1,66 @@
-/* Resetar margem e preenchimento padrão */
+
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif; /* Define a fonte padrão */
+    font-family: Arial, sans-serif; /* Fonte */
 }
 
-/* Centralizar tudo vertical e horizontalmente */
+/* Centrar vertical e horizontal */
 #main-menu, #game-end {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Altura total da janela de visualização */
-    background-size: cover; /* Garantir que o fundo cubra toda a área */
-    background-position: center; /* Centralizar a imagem de fundo */
+    height: 100vh; /* Altura total da janela */
+    background-size: cover; /* Garantir que o fundo cobre toda a área */
+    background-position: center; /* Centrar a imagem de fundo */
     background-repeat: no-repeat; /* Impedir repetição da imagem de fundo */
-    text-align: center; /* Centralizar alinhamento do texto */
-    color: white; /* Definir cor do texto para garantir visibilidade */
-    padding: 20px; /* Adicionar algum preenchimento para melhor espaçamento */
+    text-align: center; /* Centrar alinhamento do texto */
+    color: white; /* Definir cor do texto  */
+    padding: 20px; /* Adicionar preenchimento para melhor espaçamento */
 }
 
 #main-menu {
-    background-image: url('./assets/start.jpg'); /* Caminho da imagem de fundo para o menu principal */
+    background-image: url('./assets/start.jpg'); /* imagem de fundo para o menu principal */
 }
 
 #game-end {
-    background-image: url('./assets/backgroundMain.jpeg'); /* Caminho da imagem de fundo para o ecrã final */
-    display: none; /* Ocultar ecrã de fim de jogo por padrão */
+    background-image: url('./assets/backgroundMain.jpeg'); /* imagem de fundo para o ecrã final */
+    display: none; /* Ocultar ecrã de fim de jogo */
 }
 
 /* Estilos de texto */
 #main-menu h1, #game-end h1 {
-    font-size: 3rem; /* Ajustar tamanho da fonte */
-    margin-bottom: 20px; /* Ajustar margem inferior */
+    font-size: 3rem; /* Ajusta tamanho da fonte */
+    margin-bottom: 20px; /* Ajusta margem inferior */
 }
 
 #main-menu h2, #game-end p {
-    font-size: 1.5rem; /* Ajustar tamanho da fonte */
-    margin-bottom: 20px; /* Ajustar margem inferior */
+    font-size: 1.5rem; /* Ajusta tamanho da fonte */
+    margin-bottom: 20px; /* Ajusta margem inferior */
 }
 
 #main-menu p {
-    font-size: 1rem; /* Ajustar tamanho da fonte */
-    margin-bottom: 20px; /* Ajustar margem inferior */
+    font-size: 1rem; /* Ajustartamanho da fonte */
+    margin-bottom: 20px; /* Ajusta margem inferior */
 }
 
-/* Estilos de botão */
+/* Style dos buttoes */
 button {
-    margin: 10px 0; /* Ajustar margens para espaçamento */
-    padding: 15px 30px; /* Adicionar preenchimento para melhor aparência */
-    font-size: 1rem; /* Ajustar tamanho da fonte */
-    background-color: #333; /* Definir cor de fundo */
-    color: white; /* Definir cor do texto */
-    border: none; /* Remover borda padrão */
-    border-radius: 5px; /* Adicionar raio de borda */
-    cursor: pointer; /* Mudar cursor para ponteiro ao passar por cima */
+    margin: 10px 0; /* Ajustar margens */
+    padding: 15px 30px; /* Adicionar preenchimento  */
+    font-size: 1rem; /* Ajusta tamanho da fonte */
+    background-color: #333; /* cor de fundo */
+    color: white; /* cor do texto */
+    border: none; /* Remover borda */
+    border-radius: 5px; /* raio de borda */
+    cursor: pointer; /* Muda cursor para dedo ao passar por cima */
     transition: background-color 0.3s; /* Transição suave para cor de fundo */
 }
 
 button:hover {
-    background-color: #555; /* Mudar cor de fundo ao passar o mouse */
+    background-color: #555; /* Muda cor de fundo ao passar o rato */
 }
 
 #game-screen {
@@ -70,23 +70,23 @@ button:hover {
     height: 100vh;
     width: 100%;
     background-image: url('./assets/main.jpg');
-    background-size: cover; /* Escalar a imagem para cobrir toda a tela */
+    background-size: cover; /* Scale a imagem para cobrir toda a tela */
     background-repeat: no-repeat; /* Impedir repetição da imagem */
-    background-position: center; /* Centralizar a imagem */
-    position: relative; /* Garantir posicionamento absoluto dos elementos filhos como o jogador */
+    background-position: center; /* Centra a imagem */
+    position: relative;
 }
 
-/* Estilos do jogador e dos obstáculos */
+/* Style jogador e dos obstáculos */
 #player {
     position: absolute;
     width: 100px;
     height: 100px;
-    transition: top 0.05s ease; /* Aumentar a velocidade do movimento */
+    transition: top 0.05s ease; /* Aumentar a velocidade de movimento */
 }
 
 .obstacle {
     position: absolute;
-    width: 75px; /* Ajustar largura conforme necessário */
+    width: 75px; /* Ajusta largura */
     height: auto; /* Manter proporção */
 }
 

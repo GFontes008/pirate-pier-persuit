@@ -16,22 +16,22 @@ class Game {
         this.finalScore = 0;
 
         // Intervalo para gerar obstáculos
-        this.obstacleSpawnInterval = 2000; // Ajustar conforme necessário
+        this.obstacleSpawnInterval = 2000; // <- Mudar intervalo 
         this.obstacleIntervalId = setInterval(this.spawnObstacle.bind(this), this.obstacleSpawnInterval);
 
         // Iniciar o loop do jogo
         this.gameLoop = this.gameLoop.bind(this);
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
 
-        // Inicializar o botão de mudo na tela do jogo
+        // Botão de Mute na tela do jogo
         this.initMuteButton();
 
-        // Garantir que a música da tela do jogo comece a tocar
+        // Garantir que a música do game-screen começa
         document.getElementById('game-screen-music').play();
     }
 
     initMuteButton() {
-        // Adicionar ouvinte de evento ao botão de mudo na tela do jogo
+        // Adiciona event listener ao botão de Mute no game-screen
         const muteButtonGame = document.getElementById('mute-button-game');
         muteButtonGame.addEventListener('click', this.toggleMute.bind(this));
     }
@@ -40,7 +40,7 @@ class Game {
         const mainMenuMusic = document.getElementById('main-menu-music');
         const gameScreenMusic = document.getElementById('game-screen-music');
 
-        // Alternar o mudo para ambas as faixas de música
+        // Mute 
         if (mainMenuMusic.paused && gameScreenMusic.paused) {
             mainMenuMusic.play();
             gameScreenMusic.play();
@@ -51,23 +51,25 @@ class Game {
     }
 
     spawnObstacle() {
-        // Criar um novo objeto de obstáculo
+        // Criar novo obstáculo
         const obstacle = new Obstacle();
         // Adicionar o obstáculo ao array
         this.obstacles.push(obstacle);
-        // Anexar o obstáculo à tela do jogo
+        // Anexar o obstáculo ao game-screen
         const gameScreen = document.getElementById('game-screen');
         gameScreen.appendChild(obstacle.element);
     }
 
+    
     updateObstacles() {
-        // Atualizar a posição dos obstáculos e verificar colisão ou fora da tela
+        // Update a posiçao do obstaculo e verifica colisao e se o obstaculo esta off-screen
         this.obstacles = this.obstacles.filter(obstacle => {
             obstacle.move();
             if (this.checkCollision(obstacle)) {
-                // Lidar com colisão
+
+                // Se colidir
                 this.lives -= 1;
-                document.getElementById('lives').innerText = `Vidas: ${this.lives}`;
+                document.getElementById('lives').innerText = `Lives: ${this.lives}`;
                 obstacle.element.remove();
                 if (this.lives <= 0) {
                     this.endGame();
@@ -78,10 +80,10 @@ class Game {
                 // Aumentar a pontuação em 10 quando o obstáculo sai da tela
                 this.score += 10;
                 this.finalScore = this.score;
-                document.getElementById('score').innerText = `Pontuação: ${this.score}`;
+                document.getElementById('score').innerText = `Score: ${this.score}`;
                 obstacle.element.remove();
 
-                // Verificar se a pontuação atingiu a pontuação máxima
+                // Verificar se Score atingiu o máximo
                 if (this.score >= this.maxScore) {
                     this.endGame();
                 }
@@ -106,30 +108,30 @@ class Game {
     }
 
     endGame() {
-        // Esconder a tela do jogo
+        // Esconder game-screen
         document.getElementById('game-screen').style.display = 'none';
     
-        // Mostrar a tela de fim de jogo
+        // Mostrar a tela de end-game
         const gameEnd = document.getElementById('game-end');
         gameEnd.style.display = 'flex';
     
-        // Mensagem padrão
+        // Mensagem 
         let endMessage = '';
     
-        // Verificar se a pontuação é 250 ou se as vidas são zero
-        if (this.score >= this.maxScore) {
-            endMessage = `Bom Capitão, conseguiu alcançar sua tripulação! Sua pontuação: ${this.score}.`;
+        // Verificar se a pontuação é 250 ou se as vidas são zero 
+        if (this.score >= this.maxScore) { 
+            endMessage =`Well done Captain, you menage to find your crew! Your score: ${this.score}.`;
         } else if (this.lives <= 0) {
-            endMessage = `As areias te pegaram desta vez, talvez um pouco de rum ajude na próxima vez! Sua pontuação: ${this.score}.`;
+            endMessage =`The island got you this time! Maybe some rum will help next time. Your score: ${this.score}.`;
         }
     
-        // Definir a mensagem de fim
+        // Definir a end message
         document.getElementById('end-message').innerText = endMessage;
     
         // Parar de gerar obstáculos
         clearInterval(this.obstacleIntervalId);
     
-        // Cancelar o loop do jogo
+        // Parar o loop do jogo
         cancelAnimationFrame(this.gameLoopId);
     }
 
@@ -137,12 +139,11 @@ class Game {
         // Atualizar os obstáculos
         this.updateObstacles();
 
-        // Solicitar o próximo frame
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
 }
 
-// Inicializar o jogo quando o jogo começa
+// Inicializar o jogo
 document.addEventListener("DOMContentLoaded", function() {
     const startButton = document.getElementById('start-button');
     startButton.addEventListener('click', () => {
