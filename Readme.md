@@ -1,25 +1,29 @@
 Description
 
-Pirate Adventure Game
-Welcome to the Pirate Adventure Game! This game challenges you to navigate through treacherous waters and obstacles to reach your crew or achieve a high score.
+Pirate Pier Persuit
+Welcome to the Pirate Adventure Game! This game challenges you to navigate through the island, escape the cannon balls to survive.
 
 Getting Started
-To play the game, simply open the index.html file in your web browser.
+To play the game, simply open the index.html file in your web browser and press start.
 
 Gameplay
-Use the start button to begin the game.
-Use the arrow keys to control the player's ship.
-Avoid obstacles by navigating around them.
-Collect treasures to increase your score.
-Reach your crew or achieve a score of 250 to win.
+
+-You should use the start button to begin the game.
+-Use the arrow keys to control the player's character.
+-Avoid obstacles by navigating around them to increase your score.
+-Achieve a score of 250 to win.
+
 Features
-Real-time obstacle spawning.
-Dynamic scoring system.
-Engaging gameplay with immersive sound effects.
+Obstacle spawning.
+Scoring system.
+
 Responsive controls for smooth navigation.
-Technologies Used
+
+Code Languages used:
+
 HTML
 CSS
 JavaScript
 Credits
-This game was created by [Your Name] as a project for [Course/Workshop Name], inspired by classic adventure games.
+
+This game was created by Guilherme Fontes as a project for WEBDEV2024, inspired by adventure games.
