@@ -6,18 +6,19 @@ Welcome to the Pirate Adventure Game! This game challenges you to navigate throu
 Getting Started
 To play the game, simply open the index.html file in your web browser and press start.
 
-Gameplay
+
+Instructions
 
 -You should use the start button to begin the game.
 -Use the arrow keys to control the player's character.
 -Avoid obstacles by navigating around them to increase your score.
+Each canonball gives 5 points 
 -Achieve a score of 250 to win.
 
 Features
 Obstacle spawning.
 Scoring system.
 
-Responsive controls for smooth navigation.
 
 Code Languages used:
 

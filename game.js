@@ -1,6 +1,6 @@
 class Game {
     constructor() {
-        // Array to store obstacle objects
+        // Array que contem os obstaculos
         this.obstacles = [];
 
         // Player lives
@@ -11,13 +11,13 @@ class Game {
         this.score = 0;
         document.getElementById('score').innerText = this.score;
 
-        // Maximum score to end the game
+        // Pontuação maxima
         this.maxScore = 250;
 
-        // Track the final score
+        // Track final score
         this.finalScore = 0;
 
-        // Interval to spawn obstacles
+        // Interval para spawn obstaculos
         this.obstacleSpawnInterval = 2000;
         this.obstacleIntervalId = setInterval(this.spawnObstacle.bind(this), this.obstacleSpawnInterval);
 
@@ -28,12 +28,12 @@ class Game {
         // Mute button on the game screen
         this.initMuteButton();
 
-        // Ensure the game screen music starts
+        // game screen music starts
         document.getElementById('game-screen-music').play();
     }
 
     initMuteButton() {
-        // Add event listener to the mute button on the game screen
+        // Add event listener ao butao de mute no game-screen
         const muteButtonGame = document.getElementById('mute-button-game');
         muteButtonGame.addEventListener('click', this.toggleMute.bind(this));
     }
@@ -53,17 +53,17 @@ class Game {
     }
 
     spawnObstacle() {
-        // Create new obstacle
+        // Criar novo obstáculo
         const obstacle = new Obstacle();
-        // Add the obstacle to the array
+        // Add obstaculo à array
         this.obstacles.push(obstacle);
-        // Attach the obstacle to the game screen
+        // obstaculo no game screen
         const gameScreen = document.getElementById('game-screen');
         gameScreen.appendChild(obstacle.element);
     }
 
     updateObstacles() {
-        // Update obstacle positions and check for collision and off-screen status
+        // Update obstáculo e verifica colisoes e se obstaculos estao off-screen
         this.obstacles = this.obstacles.filter(obstacle => {
             obstacle.move();
             if (this.checkCollision(obstacle)) {
@@ -77,7 +77,7 @@ class Game {
                 return false;
             }
             if (obstacle.isOffScreen()) {
-                // Increase the score by 10 when the obstacle goes off screen
+                // aumenta o score 10 pontos
                 this.score += 10;
                 this.finalScore = this.score;
                 document.getElementById('score').innerText = this.score;
@@ -108,17 +108,17 @@ class Game {
     }
 
     endGame() {
-        // Hide game screen
+        // Esconde o game-screen
         document.getElementById('game-screen').style.display = 'none';
     
-        // Show the end-game screen
+        // mostra end-game screen
         const gameEnd = document.getElementById('game-end');
         gameEnd.style.display = 'flex';
     
         // End message
         let endMessage = '';
     
-        // Check if the score is 250 or if lives are zero
+        // Check if 250 score ou lives
         if (this.score >= this.maxScore) { 
             endMessage = `Well done Captain, you managed to find your crew! Your score: ${this.score}.`;
         } else if (this.lives <= 0) {
@@ -131,12 +131,12 @@ class Game {
         // Stop spawning obstacles
         clearInterval(this.obstacleIntervalId);
     
-        // Stop the game loop
+        // Stop game loop
         cancelAnimationFrame(this.gameLoopId);
     }
 
     gameLoop() {
-        // Update the obstacles
+        // Update obstacles
         this.updateObstacles();
         this.gameLoopId = requestAnimationFrame(this.gameLoop);
     }
