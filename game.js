@@ -12,7 +12,7 @@ class Game {
         document.getElementById('score').innerText = this.score;
 
         // Pontuação maxima
-        this.maxScore = 250;
+        this.maxScore = 100;
 
         // Track final score
         this.finalScore = 0;
